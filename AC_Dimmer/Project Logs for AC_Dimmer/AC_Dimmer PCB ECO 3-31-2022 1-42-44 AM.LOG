@@ -1,0 +1,20 @@
+Removed Pin From Net: NetName=GND Pin=Q1-1
+Removed Member From Class: ClassName=AC_Dimmer Member=Q1
+Added Component: Designator=Q(TO92)
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "ON Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "PN2222"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "TO-226-3 National Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/PN2222/ON%20Semiconductor/view-part/587161/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=Q-1
+Added Pin To Net: NetName=NetQ_2 Pin=Q-2
+Added Pin To Net: NetName=NetQ_2 Pin=R7-1
+Added Pin To Net: NetName=NetQ_2 Pin=R8-1
+Added Net: Name=NetQ_2
+Added Pin To Net: NetName=NetQ_3 Pin=Q-3
+Added Pin To Net: NetName=NetQ_3 Pin=R6-2
+Added Net: Name=NetQ_3
+Added Member To Class: ClassName=AC_Dimmer Member=Component Q PN2222
+Added Room: Name=AC_Dimmer

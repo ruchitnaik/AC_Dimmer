@@ -1,0 +1,495 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD21\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">3/19/2022</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">8:53:55 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc" class="file"><acronym title="C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc">C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">49</td></tr>
+</table>
+</td>
+</table><a name="IDDYQXJ5TXL3BCIB1EEWTAXNRX4ORWWPMTSHSVVTMWBCPHDSRBYODD"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMV1M0CV53A4KCPP3EBYAOA1OYCFTSJKGT2S4FIBU25KF5DL55UEM">Clearance Constraint (Gap=10mil) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID23QIMUHVPYCMB1Q53QITPTOSDF34OMLEK1GTOEMEWIJEZ44C1BSM">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWGHAH3FVCOXCEPQLBLBW4W20IBALWI3KOMS1LVLX5U53QJZDVLYD">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">22</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNBBMOTU5AE2ONCI1LCSX2TGHINMRHMTZCJIKR2H2QDEH3P1TEYYB">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCOIMAMPWIENNFCSQN3GAJC0BOPIDY4NQLLSDWIGVI2BTIY03UZKD">Width Constraint (Min=10mil) (Max=10mil) (Preferred=10mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDU2S5WQQHS5DHMWHLOHPU1OPZZ3F1IDOYWDW3TPY32KPJ2E4IBGH">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWW01RELPKN4HGQF4VZ5MU4X0JHYNXMZ1Z431DVBECC2FCP4UIINF">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1XKXQHJ5JUAED4HBJHGYE2OGBJGUKTPYOWXYDBKAFAMFNJ3I1HL">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBO4W52A14WOKIBUEB15D1BMK1BLKKI4S1D0WAOL3KOUCLT11RGKH">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQDWVTSBZBBDLCTRKTYAQWJ4M0KL4CNMVVLGRJ0LHU0XTGUUI2RJO">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">22</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID54A13NE5LXVFMDQSL1D4OVBXYKOUUQSSMIOIJON1P0C1F42ZCV3H">Silk to Silk (Clearance=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRMQPEURBDP0GF0SYEKZ1HBTHSCL5BSHDM50HBMOTZQEODG2TOQNI">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDHD5JDTWNFUAVIRLM3MVV0M2JHIJMTJA0XNQYV1GJTAZTVCEJF3LN">Room AC_Dimmer (Bounding Region = (3040mil, 1080mil, 6935mil, 1855mil) (InComponentClass('AC_Dimmer'))</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLCMQOHCVJKG0FNLDEEBCL4RESG32EMNT3TGW5VIMNJKAXIHBVGKF">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">49</td>
+</tr>
+</table><br><a name="IDMV1M0CV53A4KCPP3EBYAOA1OYCFTSJKGT2S4FIBU25KF5DL55UEM"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3939.375mil|Location2.X=3950.625mil|Location1.Y=2474.375mil|Location2.Y=2485.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3939.375mil|Location2.X=3950.625mil|Location1.Y=2474.375mil|Location2.Y=2485.625mil|Absolute=True">Clearance Constraint: (8.661mil &lt; 10mil) Between Pad Q-1(3945mil,2455mil) on Multi-Layer And Pad Q-2(3945mil,2505mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3939.375mil|Location2.X=3950.625mil|Location1.Y=2524.375mil|Location2.Y=2535.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3939.375mil|Location2.X=3950.625mil|Location1.Y=2524.375mil|Location2.Y=2535.625mil|Absolute=True">Clearance Constraint: (8.661mil &lt; 10mil) Between Pad Q-2(3945mil,2505mil) on Multi-Layer And Pad Q-3(3945mil,2555mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDWGHAH3FVCOXCEPQLBLBW4W20IBALWI3KOMS1LVLX5U53QJZDVLYD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5246.472mil|Location2.X=5559.039mil|Location1.Y=1381.473mil|Location2.Y=1701.835mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5246.472mil|Location2.X=5559.039mil|Location1.Y=1381.473mil|Location2.Y=1701.835mil|Absolute=True">Un-Routed Net Constraint: Net NetBR_1 Between Pad U2-1(5280mil,1415mil) on Multi-Layer And Pad BR-1(5532.598mil,1675.394mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5346.472mil|Location2.X=5559.039mil|Location1.Y=1381.473mil|Location2.Y=1501.047mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5346.472mil|Location2.X=5559.039mil|Location1.Y=1381.473mil|Location2.Y=1501.047mil|Absolute=True">Un-Routed Net Constraint: Net NetBR_2 Between Pad U2-2(5380mil,1415mil) on Multi-Layer And Pad BR-2(5532.598mil,1474.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4223.441mil|Location2.X=5883.842mil|Location1.Y=1448.165mil|Location2.Y=1746.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4223.441mil|Location2.X=5883.842mil|Location1.Y=1448.165mil|Location2.Y=1746.559mil|Absolute=True">Un-Routed Net Constraint: Net NetBR_3 Between Pad R5-2(4255mil,1715mil) on Multi-Layer And Pad BR-3(5857.402mil,1474.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5830.961mil|Location2.X=6546.559mil|Location1.Y=1648.953mil|Location2.Y=1746.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5830.961mil|Location2.X=6546.559mil|Location1.Y=1648.953mil|Location2.Y=1746.559mil|Absolute=True">Un-Routed Net Constraint: Net NetBR_4 Between Pad BR-4(5857.402mil,1675.394mil) on Multi-Layer And Pad R2-2(6515mil,1715mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4053.441mil|Location2.X=6024.748mil|Location1.Y=1283.441mil|Location2.Y=1349.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4053.441mil|Location2.X=6024.748mil|Location1.Y=1283.441mil|Location2.Y=1349.748mil|Absolute=True">Un-Routed Net Constraint: Net NetIC_1 Between Pad R6-1(4085mil,1315mil) on Multi-Layer And Pad IC-1(5995mil,1320mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6165.252mil|Location2.X=6716.559mil|Location1.Y=1683.441mil|Location2.Y=1749.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6165.252mil|Location2.X=6716.559mil|Location1.Y=1683.441mil|Location2.Y=1749.748mil|Absolute=True">Un-Routed Net Constraint: Net NetIC_4 Between Pad IC-4(6195mil,1720mil) on Multi-Layer And Pad R1-2(6685mil,1715mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4578.441mil|Location2.X=6024.748mil|Location1.Y=1683.441mil|Location2.Y=1749.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4578.441mil|Location2.X=6024.748mil|Location1.Y=1683.441mil|Location2.Y=1749.748mil|Absolute=True">Un-Routed Net Constraint: Net NetIC_6 Between Pad R4-2(4610mil,1715mil) on Multi-Layer And Pad IC-6(5995mil,1720mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6653.441mil|Location2.X=6903.409mil|Location1.Y=1283.441mil|Location2.Y=1688.409mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6653.441mil|Location2.X=6903.409mil|Location1.Y=1283.441mil|Location2.Y=1688.409mil|Absolute=True">Un-Routed Net Constraint: Net Phase_IN Between Pad R1-1(6685mil,1315mil) on Multi-Layer And Pad J1-01(6875mil,1660mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4436.591mil|Location2.X=5016.5mil|Location1.Y=1278.5mil|Location2.Y=1688.409mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4436.591mil|Location2.X=5016.5mil|Location1.Y=1278.5mil|Location2.Y=1688.409mil|Absolute=True">Un-Routed Net Constraint: Net Phase_OUT Between Pad J2-01(4465mil,1660mil) on Multi-Layer And Pad U?-1(4980mil,1315mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3906.591mil|Location2.X=4286.559mil|Location1.Y=1283.441mil|Location2.Y=1688.409mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3906.591mil|Location2.X=4286.559mil|Location1.Y=1283.441mil|Location2.Y=1688.409mil|Absolute=True">Un-Routed Net Constraint: Net Neutral Between Pad J3-01(3935mil,1660mil) on Multi-Layer And Pad R5-1(4255mil,1315mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3236.472mil|Location2.X=3756.559mil|Location1.Y=1361.473mil|Location2.Y=1746.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3236.472mil|Location2.X=3756.559mil|Location1.Y=1361.473mil|Location2.Y=1746.559mil|Absolute=True">Un-Routed Net Constraint: Net Opto_PWM Between Pad P1-2(3270mil,1395mil) on Multi-Layer And Pad R7-2(3725mil,1715mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3236.472mil|Location2.X=5313.528mil|Location1.Y=1461.473mil|Location2.Y=1748.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3236.472mil|Location2.X=5313.528mil|Location1.Y=1461.473mil|Location2.Y=1748.527mil|Absolute=True">Un-Routed Net Constraint: Net ZCR Between Pad P1-3(3270mil,1495mil) on Multi-Layer And Pad U2-4(5280mil,1715mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3236.472mil|Location2.X=3969.669mil|Location1.Y=1661.473mil|Location2.Y=2479.669mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3236.472mil|Location2.X=3969.669mil|Location1.Y=1661.473mil|Location2.Y=2479.669mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad P1-5(3270mil,1695mil) on Multi-Layer And Pad Q-1(3945mil,2455mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3058.441mil|Location2.X=3303.528mil|Location1.Y=1661.473mil|Location2.Y=1746.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3058.441mil|Location2.X=3303.528mil|Location1.Y=1661.473mil|Location2.Y=1746.559mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad R8-2(3090mil,1715mil) on Multi-Layer And Pad P1-5(3270mil,1695mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3236.472mil|Location2.X=5413.528mil|Location1.Y=1661.473mil|Location2.Y=1748.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3236.472mil|Location2.X=5413.528mil|Location1.Y=1661.473mil|Location2.Y=1748.527mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad P1-5(3270mil,1695mil) on Multi-Layer And Pad U2-3(5380mil,1715mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3693.441mil|Location2.X=3969.669mil|Location1.Y=1283.441mil|Location2.Y=2529.669mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3693.441mil|Location2.X=3969.669mil|Location1.Y=1283.441mil|Location2.Y=2529.669mil|Absolute=True">Un-Routed Net Constraint: Net NetQ_2 Between Pad R7-1(3725mil,1315mil) on Multi-Layer And Pad Q-2(3945mil,2505mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3920.331mil|Location2.X=4116.559mil|Location1.Y=1683.441mil|Location2.Y=2579.669mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3920.331mil|Location2.X=4116.559mil|Location1.Y=1683.441mil|Location2.Y=2579.669mil|Absolute=True">Un-Routed Net Constraint: Net NetQ_3 Between Pad Q-3(3945mil,2555mil) on Multi-Layer And Pad R6-2(4085mil,1715mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6483.441mil|Location2.X=6716.559mil|Location1.Y=1283.441mil|Location2.Y=1346.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6483.441mil|Location2.X=6716.559mil|Location1.Y=1283.441mil|Location2.Y=1346.559mil|Absolute=True">Un-Routed Net Constraint: Net Phase_IN Between Pad R2-1(6515mil,1315mil) on Multi-Layer And Pad R1-1(6685mil,1315mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4943.5mil|Location2.X=6546.559mil|Location1.Y=1283.441mil|Location2.Y=1451.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4943.5mil|Location2.X=6546.559mil|Location1.Y=1283.441mil|Location2.Y=1451.5mil|Absolute=True">Un-Routed Net Constraint: Net Phase_IN Between Pad U?-2(4980mil,1415mil) on Multi-Layer And Pad R2-1(6515mil,1315mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5246.472mil|Location2.X=6376.559mil|Location1.Y=1681.473mil|Location2.Y=1748.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5246.472mil|Location2.X=6376.559mil|Location1.Y=1681.473mil|Location2.Y=1748.527mil|Absolute=True">Un-Routed Net Constraint: Net ZCR Between Pad U2-4(5280mil,1715mil) on Multi-Layer And Pad R3-2(6345mil,1715mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4578.441mil|Location2.X=5016.5mil|Location1.Y=1283.441mil|Location2.Y=1551.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4578.441mil|Location2.X=5016.5mil|Location1.Y=1283.441mil|Location2.Y=1551.5mil|Absolute=True">Un-Routed Net Constraint: Net NetR4_1 Between Pad R4-1(4610mil,1315mil) on Multi-Layer And Pad U?-3(4980mil,1515mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3058.441mil|Location2.X=3756.559mil|Location1.Y=1283.441mil|Location2.Y=1346.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3058.441mil|Location2.X=3756.559mil|Location1.Y=1283.441mil|Location2.Y=1346.559mil|Absolute=True">Un-Routed Net Constraint: Net NetQ_2 Between Pad R8-1(3090mil,1315mil) on Multi-Layer And Pad R7-1(3725mil,1315mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDBO4W52A14WOKIBUEB15D1BMK1BLKKI4S1D0WAOL3KOUCLT11RGKH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3939.375mil|Location2.X=3950.625mil|Location1.Y=2474.375mil|Location2.Y=2485.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3939.375mil|Location2.X=3950.625mil|Location1.Y=2474.375mil|Location2.Y=2485.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.661mil &lt; 10mil) Between Pad Q-1(3945mil,2455mil) on Multi-Layer And Pad Q-2(3945mil,2505mil) on Multi-Layer [Top Solder] Mask Sliver [0.661mil] / [Bottom Solder] Mask Sliver [0.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3939.375mil|Location2.X=3950.625mil|Location1.Y=2524.375mil|Location2.Y=2535.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3939.375mil|Location2.X=3950.625mil|Location1.Y=2524.375mil|Location2.Y=2535.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.661mil &lt; 10mil) Between Pad Q-2(3945mil,2505mil) on Multi-Layer And Pad Q-3(3945mil,2555mil) on Multi-Layer [Top Solder] Mask Sliver [0.661mil] / [Bottom Solder] Mask Sliver [0.661mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDQDWVTSBZBBDLCTRKTYAQWJ4M0KL4CNMVVLGRJ0LHU0XTGUUI2RJO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5989.375mil|Location2.X=6000.625mil|Location1.Y=1344.685mil|Location2.Y=1355.935mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5989.375mil|Location2.X=6000.625mil|Location1.Y=1344.685mil|Location2.Y=1355.935mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.101mil &lt; 10mil) Between Pad IC-1(5995mil,1320mil) on Multi-Layer And Region (0 hole(s)) Top Overlay [Top Overlay] to [Top Solder] clearance [9.101mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6089.375mil|Location2.X=6100.625mil|Location1.Y=1344.711mil|Location2.Y=1355.961mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6089.375mil|Location2.X=6100.625mil|Location1.Y=1344.711mil|Location2.Y=1355.961mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.152mil &lt; 10mil) Between Pad IC-2(6095mil,1320mil) on Multi-Layer And Region (0 hole(s)) Top Overlay [Top Overlay] to [Top Solder] clearance [9.152mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6189.375mil|Location2.X=6200.625mil|Location1.Y=1344.736mil|Location2.Y=1355.986mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6189.375mil|Location2.X=6200.625mil|Location1.Y=1344.736mil|Location2.Y=1355.986mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.202mil &lt; 10mil) Between Pad IC-3(6195mil,1320mil) on Multi-Layer And Region (0 hole(s)) Top Overlay [Top Overlay] to [Top Solder] clearance [9.202mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6189.375mil|Location2.X=6200.625mil|Location1.Y=1683.995mil|Location2.Y=1695.245mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6189.375mil|Location2.X=6200.625mil|Location1.Y=1683.995mil|Location2.Y=1695.245mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.24mil &lt; 10mil) Between Pad IC-4(6195mil,1720mil) on Multi-Layer And Region (0 hole(s)) Top Overlay [Top Overlay] to [Top Solder] clearance [9.24mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6089.375mil|Location2.X=6100.625mil|Location1.Y=1683.995mil|Location2.Y=1695.245mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6089.375mil|Location2.X=6100.625mil|Location1.Y=1683.995mil|Location2.Y=1695.245mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.24mil &lt; 10mil) Between Pad IC-5(6095mil,1720mil) on Multi-Layer And Region (0 hole(s)) Top Overlay [Top Overlay] to [Top Solder] clearance [9.24mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5989.375mil|Location2.X=6000.625mil|Location1.Y=1683.995mil|Location2.Y=1695.245mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5989.375mil|Location2.X=6000.625mil|Location1.Y=1683.995mil|Location2.Y=1695.245mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.24mil &lt; 10mil) Between Pad IC-6(5995mil,1720mil) on Multi-Layer And Region (0 hole(s)) Top Overlay [Top Overlay] to [Top Solder] clearance [9.24mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6679.375mil|Location2.X=6690.625mil|Location1.Y=1341.192mil|Location2.Y=1352.442mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6679.375mil|Location2.X=6690.625mil|Location1.Y=1341.192mil|Location2.Y=1352.442mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R1-1(6685mil,1315mil) on Multi-Layer And Track (6685mil,1355mil)(6685mil,1395mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6679.375mil|Location2.X=6690.625mil|Location1.Y=1677.558mil|Location2.Y=1688.808mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6679.375mil|Location2.X=6690.625mil|Location1.Y=1677.558mil|Location2.Y=1688.808mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R1-2(6685mil,1715mil) on Multi-Layer And Track (6685mil,1635mil)(6685mil,1675mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6509.375mil|Location2.X=6520.625mil|Location1.Y=1341.192mil|Location2.Y=1352.442mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6509.375mil|Location2.X=6520.625mil|Location1.Y=1341.192mil|Location2.Y=1352.442mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R2-1(6515mil,1315mil) on Multi-Layer And Track (6515mil,1355mil)(6515mil,1395mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6509.375mil|Location2.X=6520.625mil|Location1.Y=1677.558mil|Location2.Y=1688.808mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6509.375mil|Location2.X=6520.625mil|Location1.Y=1677.558mil|Location2.Y=1688.808mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R2-2(6515mil,1715mil) on Multi-Layer And Track (6515mil,1635mil)(6515mil,1675mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6339.375mil|Location2.X=6350.625mil|Location1.Y=1341.192mil|Location2.Y=1352.442mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6339.375mil|Location2.X=6350.625mil|Location1.Y=1341.192mil|Location2.Y=1352.442mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R3-1(6345mil,1315mil) on Multi-Layer And Track (6345mil,1355mil)(6345mil,1395mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6339.375mil|Location2.X=6350.625mil|Location1.Y=1677.558mil|Location2.Y=1688.808mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6339.375mil|Location2.X=6350.625mil|Location1.Y=1677.558mil|Location2.Y=1688.808mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R3-2(6345mil,1715mil) on Multi-Layer And Track (6345mil,1635mil)(6345mil,1675mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4604.375mil|Location2.X=4615.625mil|Location1.Y=1341.192mil|Location2.Y=1352.442mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4604.375mil|Location2.X=4615.625mil|Location1.Y=1341.192mil|Location2.Y=1352.442mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R4-1(4610mil,1315mil) on Multi-Layer And Track (4610mil,1355mil)(4610mil,1395mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4604.375mil|Location2.X=4615.625mil|Location1.Y=1677.558mil|Location2.Y=1688.808mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4604.375mil|Location2.X=4615.625mil|Location1.Y=1677.558mil|Location2.Y=1688.808mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R4-2(4610mil,1715mil) on Multi-Layer And Track (4610mil,1635mil)(4610mil,1675mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4249.375mil|Location2.X=4260.625mil|Location1.Y=1341.192mil|Location2.Y=1352.442mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4249.375mil|Location2.X=4260.625mil|Location1.Y=1341.192mil|Location2.Y=1352.442mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R5-1(4255mil,1315mil) on Multi-Layer And Track (4255mil,1355mil)(4255mil,1395mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4249.375mil|Location2.X=4260.625mil|Location1.Y=1677.558mil|Location2.Y=1688.808mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4249.375mil|Location2.X=4260.625mil|Location1.Y=1677.558mil|Location2.Y=1688.808mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R5-2(4255mil,1715mil) on Multi-Layer And Track (4255mil,1635mil)(4255mil,1675mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4079.375mil|Location2.X=4090.625mil|Location1.Y=1341.192mil|Location2.Y=1352.442mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4079.375mil|Location2.X=4090.625mil|Location1.Y=1341.192mil|Location2.Y=1352.442mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R6-1(4085mil,1315mil) on Multi-Layer And Track (4085mil,1355mil)(4085mil,1395mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4079.375mil|Location2.X=4090.625mil|Location1.Y=1677.558mil|Location2.Y=1688.808mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4079.375mil|Location2.X=4090.625mil|Location1.Y=1677.558mil|Location2.Y=1688.808mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R6-2(4085mil,1715mil) on Multi-Layer And Track (4085mil,1635mil)(4085mil,1675mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3719.375mil|Location2.X=3730.625mil|Location1.Y=1341.192mil|Location2.Y=1352.442mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3719.375mil|Location2.X=3730.625mil|Location1.Y=1341.192mil|Location2.Y=1352.442mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R7-1(3725mil,1315mil) on Multi-Layer And Track (3725mil,1355mil)(3725mil,1395mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3719.375mil|Location2.X=3730.625mil|Location1.Y=1677.558mil|Location2.Y=1688.808mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3719.375mil|Location2.X=3730.625mil|Location1.Y=1677.558mil|Location2.Y=1688.808mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R7-2(3725mil,1715mil) on Multi-Layer And Track (3725mil,1635mil)(3725mil,1675mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3084.375mil|Location2.X=3095.625mil|Location1.Y=1341.192mil|Location2.Y=1352.442mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3084.375mil|Location2.X=3095.625mil|Location1.Y=1341.192mil|Location2.Y=1352.442mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R8-1(3090mil,1315mil) on Multi-Layer And Track (3090mil,1355mil)(3090mil,1395mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3084.375mil|Location2.X=3095.625mil|Location1.Y=1677.558mil|Location2.Y=1688.808mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3084.375mil|Location2.X=3095.625mil|Location1.Y=1677.558mil|Location2.Y=1688.808mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R8-2(3090mil,1715mil) on Multi-Layer And Track (3090mil,1635mil)(3090mil,1675mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDHD5JDTWNFUAVIRLM3MVV0M2JHIJMTJA0XNQYV1GJTAZTVCEJF3LN"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Room AC_Dimmer (Bounding Region = (3040mil, 1080mil, 6935mil, 1855mil) (InComponentClass('AC_Dimmer'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3040mil|Location2.X=6935mil|Location1.Y=1080mil|Location2.Y=2605mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\rtrru\OneDrive\Documents\CU Boulder\Spring'22\ESD - ECEN5613\Final_Project\AC_Dimmer\AC_Dimmer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3040mil|Location2.X=6935mil|Location1.Y=1080mil|Location2.Y=2605mil|Absolute=True">Room Definition: Between Room AC_Dimmer (Bounding Region = (3040mil, 1080mil, 6935mil, 1855mil) (InComponentClass('AC_Dimmer')) And Small Component Q-DIP-TRANS-NPN-40V-1A(TO-92) (3945mil,2505mil) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

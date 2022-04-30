@@ -1,0 +1,21 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: AC_Dimmer.PcbDoc   3/31/2022  2:49:58 PM
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : AC_Dimmer.TXT
+EIA File   : AC_Dimmer.DRL
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      31mil (0.79mm)                                            Round             4         PTH        0.73inch (18.45mm)
+T2      32mil (0.8mm)                                             Round             9         PTH        1.65inch (41.97mm)
+T3      33mil (0.85mm)                                            Round             16        PTH        4.33inch (110.01mm)
+T4      34mil (0.864mm)                                           Round             4         PTH        0.50inch (12.70mm)
+T5      35mil (0.89mm)                                            Round             3         PTH        0.77inch (19.56mm)
+T6      35mil (0.9mm)                                             Round             5         PTH        0.40inch (10.16mm)
+T7      45mil (1.143mm)                                           Round             3         PTH        0.20inch (5.08mm)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              44
+
+Total Processing Time (hh:mm:ss) : 00:00:00
